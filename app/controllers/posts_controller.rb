@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_model!
+  before_action :owned_post, only: [:edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,15 +11,17 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = current_model.posts.build
   end
 
   def create
-    if @post = Post.create(post_params)
-      flash[:success] = "Yas meng! Post has been created!"
+    @post = current_model.posts.build(post_params)
+
+    if @post.save
+      flash[:success] = "Your post has been created!"
       redirect_to posts_path
     else
-      flash.now[:alert] = "Bummer... new post couldn't be created :(  Check the form."
+      flash[:alert] = "Your new post couldn't be created!  Please check the form."
       render :new
     end
   end
@@ -50,4 +53,12 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
+
+  def owned_post
+  	unless current_model == @post.model
+      flash[:alert] = "That post doesn't belong to you!"
+      redirect_to root_path
+  	end
+  end
+
 end
