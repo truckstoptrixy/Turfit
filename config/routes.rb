@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :models, :controllers => { registrations: 'registrations' }
 	resources :posts
 
 	root 'posts#index'
