@@ -32,7 +32,7 @@ gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
