@@ -1,58 +1,48 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-def index
+  def index
+    @posts = Post.all
+  end
 
- 	@posts = Post.all
+  def show
+  end
 
-end
+  def new
+    @post = Post.new
+  end
 
-def new
+  def create
+    if @post = Post.create(post_params)
+      redirect_to posts_path
+    else
+      render :new
+    end
+  end
 
-	@post = Post.new
+  def edit
+  end
 
-end
+  def update
+    if @post.update(post_params)
+      redirect_to posts_path
+    else
+      render :edit
+    end
+  end
 
-def create
+  def destroy
+    @post.destroy
+    redirect_to root_path
+  end
 
-	@post = Post.create(post_params)
+  private
 
-	redirect_to posts_path
+  def post_params
+    params.require(:post).permit(:image, :caption)
+  end
 
-end
-
-def show
-
-  	@post = Post.find(params[:id])
-
-end
-
-def edit
-
-	@post = Post.find(params[:id])
-
-end
-
-def update
-
-	@post = Post.find(params[:id])
-	@post.update(post_params)
-  	redirect_to(post_path(@post))
-
-end
-
-def destroy
-
-  	@post = Post.find(params[:id])
-  	@post.destroy
-  	redirect_to posts_path
-
-end
-
-private
-
-def post_params
-  params.require(:post).permit(:image, :caption)
-end
-
-
+  def set_post
+    @post = Post.find(params[:id])
+  end
 end
