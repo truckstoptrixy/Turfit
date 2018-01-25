@@ -14,9 +14,13 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
+
+html {
+  height: 100%;
+}
 
 body {
   background-color: #fafafa;
@@ -166,10 +170,6 @@ body {
   margin-bottom: 40px;
 }
 
-html {
-  height: 100%;
-}
-
 .registration-bg {
   padding-top: 4em;
   height: 100%;
@@ -253,4 +253,32 @@ html {
 
 #model_avatar {
   margin: 20px auto;
+}
+
+.profile-header {
+  padding: 20px 0;
+}
+
+.profile-image {
+  margin: 20px auto;
+  height: 152px;
+  width: 152px;
+}
+
+.user-name-and-follow {
+  display: inline;
+}
+
+.profile-user-name {
+  display: inline;
+}
+
+.edit-button {
+  border-color: #818488;
+  color: #818488;
+  margin-left: 20px;
+}
+
+.profile-bio {
+  margin-top: 20px;
 }

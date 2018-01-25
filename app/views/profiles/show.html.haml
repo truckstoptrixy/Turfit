@@ -1,5 +1,21 @@
-- if @model == current_model
-  = link_to 'Edit Profile', edit_profile_path(@model.user_name)
+.posts-wrapper
+  .row.profile-header
+    .col-md-6
+      .img-circle
+        = profile_avatar_select(@model)
+    .col-md-6
+      .user-name-and-follow
+        %h3.profile-user-name
+          = @model.user_name
+        %span
+          - if @model == current_model
+            = link_to 'Edit Profile', edit_profile_path(@model.user_name),
+                                      class: 'btn edit-button'
+      %p.profile-bio
+        = @model.bio
+      .user-statistics
+        %p
+          = pluralize @model.posts.count, 'post'
 
 
 -@posts.each do |post|
