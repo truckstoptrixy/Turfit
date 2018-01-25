@@ -15,4 +15,12 @@ module ApplicationHelper
     image_tag 'Central-Park-aerial-view-GettyImages-528725311.jpg', id: 'image-preview', class: 'img-responsive'
   end
 
+  def profile_avatar_select(model)
+  return image_tag model.avatar.url(:medium),
+                   id: 'image-preview',
+                   class: 'img-responsive img-circle profile-image' if model.avatar.exists?
+  image_tag 'DavisDesignLogo.jpg', id: 'image-preview',
+                                  class: 'img-responsive img-circle profile-image'
+  end
+
 end
