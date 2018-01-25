@@ -37,6 +37,7 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'simple_form'
 gem 'devise'
 gem 'kaminari'
+gem 'acts_as_votable', '~> 0.10.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
