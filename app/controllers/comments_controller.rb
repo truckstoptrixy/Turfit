@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-before_action :set_post
+  before_action :set_post
 
   def index
     @comments = @post.comments.order("created_at ASC")
@@ -20,16 +20,16 @@ before_action :set_post
         format.js
       end
     else
-      flash[:alert] = "Check the comment form, something went wrong."
+      flash[:alert] = 'Check the comment form, something went wrong.'
       render root_path
     end
- end
+  end
 
   def destroy
     @comment = @post.comments.find(params[:id])
 
     if @comment.model_id == current_model.id
-      @comment.delete
+      @comment.destroy
       respond_to do |format|
         format.html { redirect_to root_path }
         format.js

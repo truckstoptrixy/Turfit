@@ -14,26 +14,26 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 html {
   height: 100%;
 }
 
 body {
+  height: 100%;
   background-color: #fafafa;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.alert {
+  margin-bottom: 0px;
 }
 
 /* ## NAVBAR CUSTOMISATIONS ## */
 
 .navbar {
-  margin-bottom: 0px;
-}
-
-.alert {
   margin-bottom: 0px;
 }
 
@@ -45,14 +45,13 @@ body {
 
 .navbar-default {
   background-color: #fff;
-  height: 54px;
   .navbar-nav li a {
     color: #125688;
   }
 }
 
 .navbar-container {
-  width: 70%;
+  max-width: 640px;
   margin: 0 auto;
 }
 
@@ -107,7 +106,6 @@ body {
   }
   .user-name {
     font-weight: 500;
-    margin-right: 0.3em;
     color: #125688;
     font-size: 15px;
   }
@@ -120,13 +118,12 @@ body {
       font-weight: 500;
       margin-right: 0.3em;
     }
-    .delete-comment {
+    .delete-comment-icon {
       float: right;
       color: #515151;
     }
   }
   margin-bottom: 7px;
-  padding-top: 24px;
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 10px;
@@ -154,16 +151,7 @@ body {
   justify-content: center;
 }
 
-/* ## Wrapper and styling for the new and edit views ## */
-
-.form-wrapper {
-  width: 60%;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 40px;
-  border: 1px solid #eeefef;
-  border-radius: 3px;
-}
+/* ## Wrapper and styling for the new, edit & devise views ## */
 
 .edit-links {
   margin-top: 20px;
@@ -173,7 +161,17 @@ body {
 .registration-bg {
   padding-top: 4em;
   height: 100%;
-  background-image: image-url('aerial_view_of_new_york_city-wallpaper.jpg');
+  background-image: image-url('regbackg.jpg');
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login-bg {
+  padding-top: 4em;
+  height: 100%;
+  background-image: image-url('loginbg.jpg');
   -moz-background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
@@ -197,24 +195,15 @@ body {
   }
 }
 
-.login-bg {
-  padding-top: 4em;
-  height: 100%;
-  background-image: image-url('Central-Park-aerial-view-GettyImages-528725311.jpg');
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 #image-preview {
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 #post_image {
   padding: 1em;
   margin: 0px auto;
 }
+
 
 #paginator {
   color: #4090DB;
@@ -251,8 +240,9 @@ body {
   }
 }
 
-#model_avatar {
-  margin: 20px auto;
+.comment-submit-button {
+  position: absolute;
+  left: -9999px;
 }
 
 .profile-header {
@@ -281,4 +271,48 @@ body {
 
 .profile-bio {
   margin-top: 20px;
+}
+
+#user_bio {
+  border: 1px solid gray;
+}
+
+#user_avatar {
+  padding: 1em;
+  margin: 0px auto;
+}
+
+.likes {
+  margin-top: 20px;
+  margin-bottom: 7px;
+  color: #4b4f54;
+}
+
+.like {
+  text-decoration: none;
+  color: red;
+}
+
+.like-button a:hover, a:focus {
+  text-decoration: none;
+  color: red;
+}
+
+// NOTIFICATIONS
+
+.notification-dropdown {
+  margin-top: 10px;
+  button {
+    border: none;
+  }
+}
+
+.notification-index-list {
+  margin-top: 5em;
+  list-style: none;
+  li {
+    margin-top: 1em;
+    background-color: white;
+    padding: 1em;
+  }
 }

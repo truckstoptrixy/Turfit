@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "Your post has been created!"
-      redirect_to posts_path
+      redirect_to root_path
     else
       flash[:alert] = "Your new post couldn't be created!  Please check the form."
       render :new
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:success] = "Awesome!"
-      redirect_to posts_path
+      redirect_to root_path
     else
       flash.now[:alert] = "Oh gosh something is wrong.  Check the form."
       render :edit
@@ -42,7 +42,17 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    flash[:success] = "Your post has been deleted."
     redirect_to root_path
+  end
+
+  def like
+    if @post.liked_by current_model
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
   end
 
   private
