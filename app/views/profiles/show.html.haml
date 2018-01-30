@@ -11,6 +11,20 @@
           - if @model == current_model
             = link_to 'Edit Profile', edit_profile_path(@model.user_name),
                                       class: 'btn edit-button'
+          - else
+            - if current_model_is_following(current_model.id, @model.id)
+              = link_to 'Following', unfollow_model_path,
+                                     remote: true,
+                                     class: 'btn unfollow-button',
+                                     id: 'unfollow-button',
+                                     method: :post
+            - else
+              = link_to 'Follow', follow_model_path,
+                                  remote: true,
+                                  class: 'btn follow-button',
+                                  id: 'follow-button',
+                                  method: :post
+
       %p.profile-bio
         = @model.bio
       .user-statistics

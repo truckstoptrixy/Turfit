@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   
   belongs_to :model
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :model_id, presence: true
   validates :image, presence: true

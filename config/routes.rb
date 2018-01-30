@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  post ':user_name/follow_model', to: 'relationships#follow_model', as: :follow_model
+  post ':user_name/unfollow_model', to: 'relationships#unfollow_model', as: :unfollow_model
+
+  get 'relationships/follow_model'
+
+  get 'relationships/unfollow_model'
+
+  get 'notifications/:id/link_through', to: 'notifications#link_through',
+                                        as: :link_through
+
+  get 'notifications', to: 'notifications#index'
+
   get 'profiles/show'
 
   devise_for :models, :controllers => { registrations: 'registrations' }
