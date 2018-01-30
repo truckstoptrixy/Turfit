@@ -22,6 +22,12 @@ class Model < ApplicationRecord
 
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
+  
+  def follow(model_id)
+    following_relationships.create(following_id: model_id)
+  end
 
-
+  def unfollow(model_id)
+    following_relationships.find_by(following_id: model_id).destroy
+  end
 end
