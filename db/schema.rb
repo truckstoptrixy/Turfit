@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128212054) do
+ActiveRecord::Schema.define(version: 20180130080641) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "model_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20180128212054) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer "following_id", null: false
     t.integer "follower_id", null: false
@@ -30,6 +37,17 @@ ActiveRecord::Schema.define(version: 20180128212054) do
     t.index ["follower_id"], name: "index_follows_on_follower_id"
     t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
     t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "model_id"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["model_id"], name: "index_messages_on_model_id"
   end
 
   create_table "models", force: :cascade do |t|

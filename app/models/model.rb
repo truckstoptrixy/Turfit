@@ -14,6 +14,12 @@ class Model < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  has_many :messages
+
+  def conversations
+  	Conversation.where("sender_id = ? OR recipient_id = ?", self.id, self.id)
+  end
+
   has_attached_file :avatar, styles: { medium: '152x152#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 

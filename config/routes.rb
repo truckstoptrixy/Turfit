@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get 'profiles/show'
 
+  get 'conversations', to: 'conversations#index', as: :conversations_path
+
+  get 'browse', to: 'posts#browse', as: :browse_posts
+
   devise_for :models, :controllers => { registrations: 'registrations' }
 
   root 'posts#index'
@@ -21,6 +25,10 @@ Rails.application.routes.draw do
   get ':user_name', to: 'profiles#show', as: :profile
   get ':user_name/edit', to: 'profiles#edit', as: :edit_profile
   patch ':user_name/edit', to: 'profiles#update', as: :update_profile
+
+  resources :conversations do
+    resources :messages
+  end
 
   resources :posts do
     resources :comments
